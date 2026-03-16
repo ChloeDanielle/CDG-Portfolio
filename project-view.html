@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live Project | Chloe Gutierrez</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="page-transition">
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="index.html#projects" class="logo">Chloe Danielle Gutierrez</a>
+      <ul class="nav-links">
+        <li><a href="index.html#projects">Projects</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="projects-page container">
+    <section class="projects section is-visible">
+      <div class="projects-page-head">
+        <h1 class="projects-page-title" id="embedTitle">Live Project</h1>
+        <a href="index.html#projects" class="btn btn-secondary">Back</a>
+      </div>
+      <iframe class="embed-frame" id="embedFrame" title="Embedded project preview"></iframe>
+      <p id="embedFallback" style="display:none;">No project link provided.</p>
+    </section>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const url = params.get("url");
+    const frame = document.getElementById("embedFrame");
+    const fallback = document.getElementById("embedFallback");
+
+    if (url) {
+      frame.src = url;
+    } else {
+      frame.style.display = "none";
+      fallback.style.display = "block";
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      document.body.classList.add("is-ready");
+    });
+  </script>
+</body>
+</html>

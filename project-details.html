@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects | Chloe Gutierrez</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="page-transition">
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="index.html#projects" class="logo">Chloe Danielle Gutierrez</a>
+      <ul class="nav-links">
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#projects" class="active">Projects</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="projects-page container">
+    <section class="projects section is-visible">
+      <div class="projects-page-head">
+        <h1 class="projects-page-title" id="projectsPageTitle">Projects</h1>
+        <a href="index.html#projects" class="btn btn-secondary">Back</a>
+      </div>
+      <div class="projects-list-wrap" id="projectsList"></div>
+    </section>
+  </main>
+
+  <div class="project-modal" id="projectModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-card">
+      <div class="projects-page-head">
+        <h2 id="modalTitle">Project</h2>
+        <button type="button" class="btn btn-secondary" id="modalClose">Close</button>
+      </div>
+      <p id="modalDescription"></p>
+      <div class="modal-screenshots" id="modalScreenshots"></div>
+    </div>
+  </div>
+
+  <div class="image-view-modal" id="imageViewModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <button type="button" class="btn btn-secondary close-image-view" id="imageViewClose">&times;</button>
+    <img id="imageViewImg" src="" alt="Full screen view" />
+  </div>
+
+  <style>
+    .image-view-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      z-index: 300;
+    }
+
+    .image-view-modal.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .close-image-view {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      border-radius: 50%;
+      font-size: 1.8rem;
+      line-height: 1;
+      z-index: 301;
+    }
+
+    .image-view-modal img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .modal-screenshots img,
+    .album-list img {
+      cursor: pointer;
+    }
+  </style>
+
+  <script>
+    const data = {
+      "python-system-projects": {
+        title: "Python System Projects",
+        projects: [
+          {
+            title: "ml-dashboard",
+            description: "Machine learning monitoring dashboard for training metrics, model comparisons, and experiment tracking.",
+            tech: "Python, Flask, Pandas, Plotly",
+            screenshots: ["ML1.png", "ML2.png", "ML3.png"]
+          },
+          {
+            title: "attendance-automation",
+            description: "Automated attendance logging and report generation with date filters and CSV export.",
+            tech: "Python, SQLite, Tkinter",
+            screenshots: ["Attendance1.png", "Attendance2.png"]
+          },
+          {
+            title: "inventory-guardian",
+            description: "Stock management system with low-inventory alerts, supplier records, and monthly summaries.",
+            tech: "Python, FastAPI, PostgreSQL",
+            screenshots: ["Inv1.png", "Inv2.png", "Inv3.png"]
+          }
+        ]
+      },
+      "web-development": {
+        title: "Web Development",
+        projects: [
+          {
+            title: "Noli Me Tangere Game Website - Capstone Project",
+            description: "Capstone Game Project using HTML CSS AND JAVA",
+            tech: "HTML, CSS, JavaScript",
+            link: "https://chloedanielle.github.io/nolimetangeregamesite.io/"
+          },
+          {
+            title: "FIDGETTY - E-Commerce Website",
+            description: "Reponsive website for Selling Fidget Spinners Online made with HTML CSS and JAVAscript",
+            tech: "HTML, CSS, JavaScript",
+            link: "https://chloedanielle.github.io/FIDGETTY/"
+          },
+          {
+            title: "OJT Tracking Web Application",
+            description: "OJT Tracking Web Application",
+            tech: "HTML CSS JS FIREBASE FOR AUTH",
+            link: "https://chloedanielle.github.io/ojt-tracker/"
+          }
+        ]
+      },
+      "figma": {
+        title: "Figma Prototype & Graphic Designs",
+        projects: [
+          {
+            title: "MDJ Catering",
+            description: "Built a website for customers and for admin / staff. Customers can view menu and advance order. Admin and Staffs can track inventory sales etc.",
+            tech: "Figma",
+            link: "https://www.figma.com/proto/jvd7le8VtMSxM5wu7Ndm2A/Untitled?node-id=51-404&starting-point-node-id=51%3A404"
+          },
+          {
+            title: "DASH - Carpool Web Application",
+            description: "Carpool Web application for De Lasalle Lipa Students.",
+            tech: "Figma",
+            link: "https://www.figma.com/proto/RfMtYOQQrCbAudJuD2dSKH/Dash-web?node-id=8-3475&starting-point-node-id=5%3A3"
+          },
+          {
+            title: "Coffee Break - Taysan Website",
+            description: "Designed front end.",
+            tech: "Figma",
+            link: "https://www.figma.com/proto/JdD4t1iNmGGfx28YcUTMSq/Untitled?node-id=1-2&t=hngDcufpoEeSUM9H-1"
+          },
+          {
+            title: "DASH Mobile Case Study",
+            description: "Dash mobile case study.",
+            tech: "Figma",
+            link: "https://www.figma.com/proto/6vXuPe8iU7u0y3gM5RV65U/Untitled?node-id=1-2"
+          }
+        ],
+        graphicDesigns: [
+          "GraphicDes1",
+          "GraphicDes2",
+          "GraphicDes3",
+          "GraphicDes4",
+          "GraphicDes5",
+          "GraphicDes6",
+          "GraphicDes7",
+          "GraphicDes8",
+          "GraphicDes9"
+        ]
+      },
+      "other-systems": {
+        title: "Other Systems",
+        projects: [
+          {
+            title: "records-tracker",
+            description: "Desktop tool for storing and searching institutional records.",
+            tech: "C#, .NET, SQL Server",
+            screenshots: ["LF1.png", "LF2.png", "LF3.png"]
+          },
+          {
+            title: "support-request-hub",
+            description: "Request intake and routing system for operational support teams.",
+            tech: "Java, Spring Boot, MySQL",
+            screenshots: ["N2.png", "N22.png", "N33.png"]
+          },
+          {
+            title: "asset-monitor",
+            description: "Internal tracking system for company equipment lifecycle and maintenance.",
+            tech: "C#, WPF, SQLite",
+            screenshots: ["N3.png", "N33.png", "N333.png"]
+          }
+        ]
+      },
+      "game-development-projects": {
+        title: "Game Development Projects",
+        projects: [
+          {
+            title: "2d-platformer-prototype",
+            description: "Side-scrolling platformer prototype with jump physics, enemy AI, and collectible systems.",
+            tech: "Unity, C#",
+            screenshots: ["Game1.png", "Game2.png", "Game3.png"]
+          },
+          {
+            title: "puzzle-room-escape",
+            description: "Puzzle-based escape game featuring interaction mechanics, clues, and progression gating.",
+            tech: "Unity, C#",
+            screenshots: ["Game4.png", "Game5.png", "Game6.png"]
+          },
+          {
+            title: "topdown-coop-arena",
+            description: "Local co-op top-down arena game with wave spawning, score tracking, and power-ups.",
+            tech: "Unity, C#, Blender",
+            screenshots: ["Game7.png", "Game8.png", "Game9.png"]
+          }
+        ]
+      }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const category = params.get("category") || "python-system-projects";
+    const selected = data[category] || data["python-system-projects"];
+    const modalCategories = new Set(["python-system-projects", "other-systems", "game-development-projects"]);
+
+    const titleEl = document.getElementById("projectsPageTitle");
+    const listEl = document.getElementById("projectsList");
+    titleEl.textContent = selected.title;
+
+    listEl.innerHTML = selected.projects
+      .map((project, index) => {
+        const isModal = modalCategories.has(category);
+        const btnLabel = isModal ? (category === "python-system-projects" ? "Open Project" : "View Project") : "Open Live Project";
+        const actionMarkup = isModal
+          ? `<button class="btn btn-primary open-modal" data-title="${project.title}" data-desc="${project.description}"
+              data-shots="${encodeURIComponent(JSON.stringify(project.screenshots || []))}">${btnLabel}</button>`
+          : `<a class="btn btn-primary" href="${project.link}" target="_blank" rel="noopener noreferrer">Open Live Project</a>`;
+
+        return `
+          <article class="project-item">
+            <h3>${index + 1}. ${project.title}</h3>
+            <p>${project.description}</p>
+            <p class="tech">Language/Tech: ${project.tech}</p>
+            <div class="project-actions">${actionMarkup}</div>
+          </article>
+        `;
+      })
+      .join("");
+
+    if (category === "figma" && Array.isArray(selected.graphicDesigns)) {
+      const albumMarkup = `
+        <article class="project-item">
+          <h3>Graphic Designs</h3>
+          <ul class="album-list is-open" id="albumList">
+            ${selected.graphicDesigns.map((name) => `
+              <li>
+                <img src="${name}.png" onerror="this.onerror=null; this.src='${name}.jpg'" alt="${name}" loading="lazy" />
+              </li>
+            `).join("")}
+          </ul>
+        </article>
+      `;
+      listEl.insertAdjacentHTML("beforeend", albumMarkup);
+    }
+
+    const modal = document.getElementById("projectModal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalDescription = document.getElementById("modalDescription");
+    const modalScreenshots = document.getElementById("modalScreenshots");
+    const modalClose = document.getElementById("modalClose");
+
+    const closeModal = () => {
+      if (!modal) return;
+      modal.classList.remove("is-open");
+      modal.setAttribute("aria-hidden", "true");
+      modalScreenshots.innerHTML = "";
+    };
+
+    const imageViewModal = document.getElementById("imageViewModal");
+    const imageViewImg = document.getElementById("imageViewImg");
+    const imageViewClose = document.getElementById("imageViewClose");
+
+    const openImageView = (src) => {
+      if (!imageViewModal || !imageViewImg) return;
+      imageViewImg.src = src;
+      imageViewModal.classList.add("is-open");
+      imageViewModal.setAttribute("aria-hidden", "false");
+    };
+
+    const closeImageView = () => {
+      if (!imageViewModal) return;
+      imageViewModal.classList.remove("is-open");
+      imageViewModal.setAttribute("aria-hidden", "true");
+      imageViewImg.src = "";
+    };
+
+    imageViewClose?.addEventListener("click", closeImageView);
+    imageViewModal?.addEventListener("click", (event) => {
+      if (event.target === imageViewModal) closeImageView();
+    });
+
+    listEl.addEventListener("click", (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLElement)) return;
+
+      const openButton = target.closest(".open-modal");
+      if (openButton && modal) {
+        const title = openButton.getAttribute("data-title") || "Project";
+        const desc = openButton.getAttribute("data-desc") || "";
+        const shots = openButton.getAttribute("data-shots") || "[]";
+        let list = [];
+        try {
+          list = JSON.parse(decodeURIComponent(shots));
+        } catch (err) {
+          list = [];
+        }
+
+        modalTitle.textContent = title;
+        modalDescription.textContent = desc;
+        modalScreenshots.innerHTML = list
+          .map((src) => `<img src="${src}" alt="${title} screenshot" loading="lazy" decoding="async" />`)
+          .join("");
+        modal.classList.add("is-open");
+        modal.setAttribute("aria-hidden", "false");
+        return;
+      }
+
+      const albumToggle = target.closest("#albumToggle");
+      if (albumToggle) {
+        return;
+      }
+
+      if (target.tagName === 'IMG' && (target.closest('.modal-screenshots') || target.closest('.album-list'))) {
+        openImageView(target.src);
+      }
+    });
+
+    modalClose?.addEventListener("click", closeModal);
+    modal?.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        if (imageViewModal?.classList.contains("is-open")) {
+          closeImageView();
+        } else {
+          closeModal();
+        }
+      }
+    });
+
+    window.addEventListener("DOMContentLoaded", () => {
+      document.body.classList.add("is-ready");
+    });
+  </script>
+</body>
+
+</html>
